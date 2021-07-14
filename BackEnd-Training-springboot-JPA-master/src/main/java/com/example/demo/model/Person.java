@@ -13,11 +13,13 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-    @Column(nullable = false,unique = true)
 
    // @NotEmpty(message = "must fill name field")
-    @Size(min =3,max = 15,message = "name must be at least 3 character and not exceed 15")
+   @Column(name="name")
+
     private  String name;
+    @Column(name="dep")
+
     private int dep;
 
     public Person(int id, String name, int dep) {
