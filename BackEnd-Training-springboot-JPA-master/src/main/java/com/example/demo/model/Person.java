@@ -1,35 +1,42 @@
 package com.example.demo.model;
-
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "Persons")
+@Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
+    @Column(nullable = false,unique = true)
 
-   // @NotEmpty(message = "must fill name field")
-   @Column(name="name")
-
+    @NotEmpty(message = "must fill name field")
+    @Size(min =3,max = 15,message = "name must be at least 3 character and not exceed 15")
     private  String name;
-    @Column(name="dep")
-
     private int dep;
-
-    public Person(int id, String name, int dep) {
-        this.id = id;
-        this.name = name;
-        this.dep = dep;
-    }
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
+    private Set<PhoneNumber> numbers;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "persons_projects",joinColumns = @JoinColumn(name = "person_id",referencedColumnName = "id")
+            ,inverseJoinColumns =@JoinColumn(name = "project_id",referencedColumnName = "id") )
+    private Set<Project> projects;
 
     public Person() {
-       super();
+
+        super();
+    }
+
+    public Person(int id, String name, int dep, Set<PhoneNumber> numbers) {
+    }
+
+    public void setNumbers(Set<PhoneNumber> numbers) {
+        this.numbers = numbers;
     }
 
     public void setId(int id) {
@@ -56,19 +63,51 @@ public class Person {
         return dep;
     }
 
+    public Set<PhoneNumber> getNumbers() {
+        return numbers;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dep=" + dep +
+                ", numbers=" + numbers +
                 '}';
+    }
+
+
+
+    public void addPhoneNumber(PhoneNumber number){
+        if(number !=null){
+            if(numbers==null){
+                numbers=new HashSet<>();
+            }
+            number.setPerson(this);
+            numbers.add(number);
+        }
     }
 
     public static class Builder {
         private int id;
         private  String name;
         private int dep;
+        private Set<PhoneNumber> numbers;
+
+
+        public Builder setNumbers(Set<PhoneNumber> numbers) {
+            this.numbers = numbers;
+            return this;
+        }
 
         public Builder setId(int id) {
             this.id = id;
@@ -87,12 +126,7 @@ public class Person {
 
         public Person build(){
 
-            return new Person(id,name,dep);
+            return new Person(id,name,dep, numbers);
         }
-
     }
 }
-
-
-
-

@@ -6,6 +6,9 @@ import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +28,10 @@ public class PersonController {
         return service.addToList(person);
     }
 
-
+//    @GetMapping("/persons")
+//    public List<Person> getAllUsers(){
+//        return service.getAll();
+//    }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/persons/{Id}")
     public String deleteOne(@PathVariable Integer Id) {
@@ -44,10 +50,12 @@ public class PersonController {
 //    {
 //        return personRepository.findById(id);
 //    }
-    @GetMapping("/persons/search")
-    public List<Person> FindByname(@RequestParam("name")  String name)
-    {
-        return personRepository.findByName(name);
-    }
+//    @GetMapping("/persons/search")
+//    public List<Person> FindByname(@RequestParam("name")  String name)
+//    {
+//        return personRepository.findByName(name);
+//    }
+
+
 
 }
