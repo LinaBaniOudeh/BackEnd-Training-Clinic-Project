@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.model.Person;
 import com.example.demo.model.PhoneNumber;
+import com.example.demo.model.Project;
 import com.example.demo.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,23 @@ class DemoApplicationTests {
 	}
 	@Test
 	public void testDelete(){
-
-
 		repository.deleteById(12);
+	}
+
+	@Test
+	public void testMtoMCreatePerson(){
+
+		Person person=new Person();
+		person.setName("Ali");
+		person.setDep(1);
+		HashSet<Project> projects=new HashSet<Project>();
+		Project project=new Project();
+
+		project.setName("Spring boot jpa");
+		projects.add(project);
+		person.setProjects(projects);
+		repository.save(person);
+
+
 	}
 }
