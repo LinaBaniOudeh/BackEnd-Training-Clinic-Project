@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import com.example.demo.model.BankAccount;
 import com.example.demo.model.Person;
 import com.example.demo.model.PhoneNumber;
 import com.example.demo.model.Project;
+import com.example.demo.repository.BankAccountRepository;
 import com.example.demo.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ class DemoApplicationTests {
 	}
      @Autowired
      PersonRepository repository;
+
+	@Autowired
+	BankAccountRepository Accountrepository;
+
 	@Test
 	public void testCreate(){
 		Person person=new Person();
@@ -44,7 +50,7 @@ class DemoApplicationTests {
 
  @Test
  @Transactional
-	public void testLoadCustomer(){
+	public void testLoadPerson(){
 		Optional<Person> person=repository.findById(4);
 		if (person.isPresent()){
 	          System.out.println(person.get().getName());
@@ -54,7 +60,7 @@ class DemoApplicationTests {
 	}
 
 	@Test
-	public void testUpdateCustomer(){
+	public void testUpdatePerson(){
 		Optional<Person> person=repository.findById(12);
 		if (person.isPresent()){
 			Person p1= person.get();
@@ -83,6 +89,51 @@ class DemoApplicationTests {
 		projects.add(project);
 		person.setProjects(projects);
 		repository.save(person);
+
+
+	}
+
+	@Test
+	@Transactional
+	public void testMtoMFindPerson(){
+		Optional<Person> person=repository.findById(1);
+		if (person.isPresent()){
+			Person p1= person.get();
+
+			System.out.println(p1);
+			System.out.println(p1.getProjects());
+
+		}
+
+	}
+
+	@Test
+	public void testOneTonOneCreateBankAccount(){
+
+		BankAccount bankAccount=new BankAccount();
+		bankAccount.setType("Student Account");
+		bankAccount.setBalance(8679.99);
+		Person person=new Person();
+		person.setName("stephan");
+		person.setDep(1);
+		PhoneNumber p1=new PhoneNumber();
+		p1.setNumber("0595024009");
+		p1.setType("cell");
+		PhoneNumber p2=new PhoneNumber();
+		p2.setNumber("02739879");
+		p2.setType("home");
+		HashSet<Project> projects=new HashSet<Project>();
+		Project project=new Project();
+
+		project.setName("Spring boot jpa");
+		projects.add(project);
+		person.setProjects(projects);
+		person.addPhoneNumber(p1);
+		person.addPhoneNumber(p2);
+		bankAccount.setPerson(person);
+
+		Accountrepository.save(bankAccount);
+
 
 
 	}

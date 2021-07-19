@@ -26,6 +26,8 @@ public class Person {
     @JoinTable(name = "persons_projects",joinColumns = @JoinColumn(name = "person_id",referencedColumnName = "id")
             ,inverseJoinColumns =@JoinColumn(name = "project_id",referencedColumnName = "id") )
     private Set<Project> projects;
+    @OneToOne(mappedBy = "person")
+    private BankAccount bankAccount;
 
     public Person() {
 
@@ -84,8 +86,6 @@ public class Person {
                 ", numbers=" + numbers +
                 '}';
     }
-
-
 
     public void addPhoneNumber(PhoneNumber number){
         if(number !=null){
