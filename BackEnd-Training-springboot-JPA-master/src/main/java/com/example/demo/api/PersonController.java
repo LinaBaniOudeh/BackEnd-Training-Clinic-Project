@@ -28,10 +28,7 @@ public class PersonController {
         return service.addToList(person);
     }
 
-//    @GetMapping("/persons")
-//    public List<Person> getAllUsers(){
-//        return service.getAll();
-//    }
+
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/persons/{Id}")
     public String deleteOne(@PathVariable Integer Id) {

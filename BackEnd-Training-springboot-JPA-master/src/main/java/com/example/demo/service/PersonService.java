@@ -1,5 +1,4 @@
 package com.example.demo.service;
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.Collections;
 //import java.sql.Date;
@@ -10,6 +9,7 @@ import com.example.demo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
