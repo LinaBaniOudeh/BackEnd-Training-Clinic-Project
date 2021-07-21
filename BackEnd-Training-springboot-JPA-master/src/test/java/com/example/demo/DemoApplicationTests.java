@@ -141,11 +141,12 @@ class DemoApplicationTests {
 
     //*************Paging and Sorting****************
     @Test
+    @Transactional
     public void testFindAllPaging() {
         //Pageable pageable= (Pageable) PageRequest.of(0,2);
         Pageable page = PageRequest.of(1, 2);
         Pageable firstPageWithTwoElements = PageRequest.of(0, 2);
-       // System.out.println(repository.findAllPersons(PageRequest.of(0,3)));
+        System.out.println(repository.findAllPersons(PageRequest.of(0,3)));
        // System.out.println( repository.findAll(PageRequest.of(0,3)));
        // results.forEach(p -> System.out.println(p.getName()));
 
@@ -163,11 +164,23 @@ class DemoApplicationTests {
 
 
     @Test
+
     public void testFindAllPagingAndSorting() {
         PageRequest page=PageRequest.of(1,4, Sort.Direction.ASC,"name");
         repository.findAll(page).forEach(p-> System.out.println(p.getName()));
+    }
+
+    @Test
+    @Transactional
+    public void testFindAllPersonNQ(){
+        System.out.println(repository.findAllPersonsNQ());
 
 
+    }
+    @Test
+    @Transactional
+    public void testFindByNameNQ(){
+        System.out.println(repository.findByNameNQ("raghad"));
 
     }
 }
