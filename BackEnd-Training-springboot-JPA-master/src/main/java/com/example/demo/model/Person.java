@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "person")
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@IdClass(PersonPKId.class)
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,6 +25,7 @@ public class Person implements Serializable {
     @NotEmpty(message = "must fill name field")
     @Size(min =3,max = 15,message = "name must be at least 3 character and not exceed 15")
     private  String name;
+    @Id
     private int dep;
     @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
     private Set<PhoneNumber> numbers;
