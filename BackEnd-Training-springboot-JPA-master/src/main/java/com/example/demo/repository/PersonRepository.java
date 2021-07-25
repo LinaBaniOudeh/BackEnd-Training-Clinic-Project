@@ -13,7 +13,7 @@ import java.util.List;
 public interface PersonRepository extends PagingAndSortingRepository<Person,Integer> {
         @Query("from Person")
         List<Person> findAll();
-
+        Person findById(int id);
         @Query("from Person")
         List<Person> findAllPersons(Pageable pageable);
         @Query(value = "select * from person",nativeQuery = true)
