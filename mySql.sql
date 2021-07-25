@@ -4,9 +4,9 @@ use mydb;
 DROP TABLE IF EXISTS Person;
 
 CREATE TABLE Person (
-                        id INT AUTO_INCREMENT  PRIMARY KEY,
-                        name VARCHAR(250) NOT NULL,
-                        dep INT NOT NULL);
+id INT AUTO_INCREMENT  PRIMARY KEY,
+name VARCHAR(250) NOT NULL,
+dep INT NOT NULL);
                         
                         
 INSERT INTO Person (name,  dep) VALUES
@@ -43,10 +43,29 @@ FOREIGN KEY (project_id)
 REFERENCES project(id)
 );
 
+create table bank_account(
+id int PRIMARY KEY AUTO_INCREMENT,
+type varchar(20),
+balance real,
+person_id int,
+FOREIGN KEY (person_id)
+REFERENCES person(id)
+);
+
+
+
+
+
+
+
+
+
 DROP TABLE IF EXISTS PhoneNumber;
 DROP TABLE IF EXISTS phone_number;
 
 select * from Person;
+select * from bank_account ;
+
 select * from project;
 select * from persons_projects;
 select * from phone_number;
