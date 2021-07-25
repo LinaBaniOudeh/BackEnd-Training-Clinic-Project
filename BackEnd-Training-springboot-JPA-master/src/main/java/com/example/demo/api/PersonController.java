@@ -1,22 +1,15 @@
 package com.example.demo.api;
 import java.util.List;
-import java.util.Optional;
 
 import com.example.demo.model.Person;
-import com.example.demo.repository.PersonRepository;
-import com.example.demo.service.PersonService;
+import com.example.demo.service.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonController {
     @Autowired
-    PersonService service;
-    @Autowired
-    PersonRepository personRepository;
+    PersonServiceImpl service;
 
     @GetMapping("/persons")
     public List<Person> getAllUsers(){
@@ -30,7 +23,7 @@ public class PersonController {
 
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/persons/{Id}")
+    @DeleteMapping(value = "/persons/{Id}")
     public String deleteOne(@PathVariable Integer Id) {
         return service.delete(Id);
     }

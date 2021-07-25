@@ -28,4 +28,7 @@ public interface PersonRepository extends PagingAndSortingRepository<Person, Per
         List<Person> findByDep(int dep);
         List<Person> findByNameAndDep(String name,int id);
         Person save(Person o);
+
+
+        void deleteById(Integer personId);
 }

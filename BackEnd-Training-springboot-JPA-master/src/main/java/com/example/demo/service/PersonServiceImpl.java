@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonService {
+public class PersonServiceImpl implements PersonService2{
     @Autowired
     PersonRepository personRepository;
 
