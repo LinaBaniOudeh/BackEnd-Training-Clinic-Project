@@ -1,7 +1,6 @@
-package com.example.demo.repository;
+package com.example.demo.repositories;
 
-import com.example.demo.model.Person;
-import com.example.demo.model.DoctorPKId;
+import com.example.demo.models.Person;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

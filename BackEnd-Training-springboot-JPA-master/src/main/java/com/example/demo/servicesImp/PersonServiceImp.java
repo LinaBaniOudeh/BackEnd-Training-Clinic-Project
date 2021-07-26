@@ -1,14 +1,15 @@
-package com.example.demo.service;
+package com.example.demo.servicesImp;
 //import java.sql.Date;
 import java.util.List;
 
-import com.example.demo.model.Person;
-import com.example.demo.repository.PersonRepository;
+import com.example.demo.models.Person;
+import com.example.demo.repositories.PersonRepository;
+import com.example.demo.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Service;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImp implements PersonService {
     @Autowired
     PersonRepository personRepository;
 

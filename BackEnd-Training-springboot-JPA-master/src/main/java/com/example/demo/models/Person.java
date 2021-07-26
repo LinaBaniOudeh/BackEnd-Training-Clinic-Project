@@ -1,5 +1,4 @@
-package com.example.demo.model;
-import net.sf.ehcache.config.PersistenceConfiguration;
+package com.example.demo.models;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
@@ -18,7 +17,6 @@ public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-
     @Column(name="id")
     private int id;
     @Column(nullable = false,unique = true)

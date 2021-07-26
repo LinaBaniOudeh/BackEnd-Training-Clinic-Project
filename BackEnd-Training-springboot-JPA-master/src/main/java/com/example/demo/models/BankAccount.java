@@ -1,9 +1,6 @@
-package com.example.demo.model;
-
-import org.hibernate.engine.internal.Cascade;
+package com.example.demo.models;
 
 import javax.persistence.*;
-import java.util.Date;
 
 //this is first version
 

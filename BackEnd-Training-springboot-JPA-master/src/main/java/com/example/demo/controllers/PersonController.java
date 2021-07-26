@@ -1,15 +1,15 @@
-package com.example.demo.api;
+package com.example.demo.controllers;
 import java.util.List;
 
-import com.example.demo.model.Person;
-import com.example.demo.service.PersonServiceImpl;
+import com.example.demo.models.Person;
+import com.example.demo.servicesImp.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonController {
     @Autowired
-    PersonServiceImpl service;
+    PersonServiceImp service;
 
     @GetMapping("/persons")
     public List<Person> getAllUsers(){
