@@ -1,23 +1,24 @@
 package com.example.demo.model;
-import com.sun.istack.internal.NotNull;
+import net.sf.ehcache.config.PersistenceConfiguration;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 //THIS IS THE FIRST VERSION OF PERSON
 @Entity
 @Table(name = "person")
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-@IdClass(PersonPKId.class)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name="id")
     private int id;
     @Column(nullable = false,unique = true)
@@ -25,14 +26,13 @@ public class Person implements Serializable {
     @NotEmpty(message = "must fill name field")
     @Size(min =3,max = 15,message = "name must be at least 3 character and not exceed 15")
     private  String name;
-    @Id
-    private int dep;
     @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
     private Set<PhoneNumber> numbers;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "persons_projects",joinColumns = @JoinColumn(name = "person_id",referencedColumnName = "id")
-            ,inverseJoinColumns =@JoinColumn(name = "project_id",referencedColumnName = "id") )
-    private Set<Project> projects;
+    private String address;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+
+
     @OneToOne(mappedBy = "person")
     private BankAccount bankAccount;
 
@@ -41,7 +41,7 @@ public class Person implements Serializable {
         super();
     }
 
-    public Person(int id, String name, int dep, Set<PhoneNumber> numbers) {
+    public Person(int id, String name, Set<PhoneNumber> numbers, BankAccount bankAccount, String address,Date dob) {
     }
 
     public void setNumbers(Set<PhoneNumber> numbers) {
@@ -56,8 +56,28 @@ public class Person implements Serializable {
         this.name = name;
     }
 
-    public void setDep(int dep) {
-        this.dep = dep;
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public int getId() {
@@ -68,20 +88,9 @@ public class Person implements Serializable {
         return name;
     }
 
-    public int getDep() {
-        return dep;
-    }
 
     public Set<PhoneNumber> getNumbers() {
         return numbers;
-    }
-
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
-    public Set<Project> getProjects() {
-        return projects;
     }
 
     @Override
@@ -89,8 +98,10 @@ public class Person implements Serializable {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dep=" + dep +
                 ", numbers=" + numbers +
+                ", address='" + address + '\'' +
+                ", dob=" + dob +
+                ", bankAccount=" + bankAccount +
                 '}';
     }
 
@@ -107,9 +118,11 @@ public class Person implements Serializable {
     public static class Builder {
         private int id;
         private  String name;
-        private int dep;
         private Set<PhoneNumber> numbers;
-
+        private BankAccount bankAccount;
+        private String address;
+        @Temporal(TemporalType.DATE)
+        private Date dob;
 
         public Builder setNumbers(Set<PhoneNumber> numbers) {
             this.numbers = numbers;
@@ -126,14 +139,26 @@ public class Person implements Serializable {
             return this;
         }
 
-        public Builder setDep(int dep) {
-            this.dep= dep;
+        public Builder setBankAccount(BankAccount bankAccount) {
+            this.bankAccount = bankAccount;
             return this;
         }
 
+        public Builder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder setDob(Date dob) {
+            this.dob = dob;
+            return this;
+        }
+
+
+
         public Person build(){
 
-            return new Person(id,name,dep, numbers);
+            return new Person(id,name, numbers,bankAccount, address,dob);
         }
     }
 }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 
 @EqualsAndHashCode
-public class PersonPKId implements Serializable {
+public class DoctorPKId implements Serializable {
     private int id;
     private int dep;
 

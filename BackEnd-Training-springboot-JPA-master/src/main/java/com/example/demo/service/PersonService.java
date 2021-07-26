@@ -4,7 +4,7 @@ import com.example.demo.model.Person;
 
 import java.util.List;
 
-public interface PersonService2 {
+public interface PersonService {
     public List<Person> getAll();
     public Person addToList(Person person);
     public String delete(Integer personId);
