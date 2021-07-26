@@ -4,6 +4,9 @@ import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
+
+//this is first version
+
 @Entity
 public class BankAccount {
     @Id
