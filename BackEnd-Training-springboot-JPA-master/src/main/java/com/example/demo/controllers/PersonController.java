@@ -7,29 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
+
 public class PersonController {
     @Autowired
     PersonServiceImp service;
 
-    @GetMapping("/persons")
+    @GetMapping("/")
     public List<Person> getAllUsers(){
         return service.getAll();
     }
 
-    @PostMapping("/persons")
+    @PostMapping("/")
     public Person addOne(@RequestBody Person person) {
         return service.addToList(person);
     }
 
 
 
-    @DeleteMapping(value = "/persons/{Id}")
+    @DeleteMapping(value = "/{Id}")
     public String deleteOne(@PathVariable Integer Id) {
         return service.delete(Id);
     }
 
 
-    @PutMapping("/persons")
+    @PutMapping("/")
     public String updatePerson(@RequestBody Person person) {
         return service.UpdatePersonList(person);
 
