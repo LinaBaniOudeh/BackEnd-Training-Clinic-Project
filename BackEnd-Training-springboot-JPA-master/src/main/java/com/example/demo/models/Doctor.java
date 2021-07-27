@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@IdClass(DoctorPKId.class)
+
 public class Doctor extends Person {
    // @Id
     private int dep;

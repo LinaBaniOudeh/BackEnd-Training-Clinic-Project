@@ -11,30 +11,14 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableSwagger2
+
 public class DemoApplication {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(DemoApplication.class, args);// CREATE SPRING CONTAINER.
 
-
-
-
-
 	}
-	@Bean
-	public Docket swaggerConfiguration(){
 
-
-
-
-		//Return a prepared Docket Instance.
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.paths(PathSelectors.ant("/api/*"))
-				.apis(RequestHandlerSelectors.basePackage("com.example"))
-				.build();
-	}
 
 }

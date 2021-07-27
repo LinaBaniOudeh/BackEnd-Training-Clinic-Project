@@ -17,13 +17,13 @@ import java.util.Date;
 @AllArgsConstructor
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private Date date;
 
-    private int doctorId;
+    private long doctorId;
 
-    private int patientId;
+    private long patientId;
     private String description;
 }
