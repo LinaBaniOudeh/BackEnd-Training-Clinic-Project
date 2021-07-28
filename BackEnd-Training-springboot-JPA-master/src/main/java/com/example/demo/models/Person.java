@@ -36,8 +36,13 @@ public  class Person   {
     @Temporal(TemporalType.DATE)
     private Date dob;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACCOUNT_ID")
+
+    //@OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
+
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name="ACCOUNT_ID")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private BankAccount bankAccount;
 
 //

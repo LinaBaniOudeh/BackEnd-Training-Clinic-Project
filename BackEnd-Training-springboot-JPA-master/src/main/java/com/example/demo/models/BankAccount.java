@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 //this is first version
 @Entity
+
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +16,14 @@ public class BankAccount {
 //    @Temporal(TemporalType.DATE)
 //    private Date ValidTo;
 
-    //@OneToOne(cascade = CascadeType.ALL)
-   // @JoinColumn(name = "person_id")
+    //@OneToOne()
 
-    @OneToOne(mappedBy="bankAccount")
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="person_id")
+//    @OneToOne(cascade = CascadeType.ALL)
+//     @JoinColumn(name = "person_id")
+    @OneToOne(mappedBy = "bankAccount")
+
     private Person person;
 
     public int getId() {

@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -16,7 +17,7 @@ public class SwaggerConfig {
         //Return a prepared Docket Instance.
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-//				.paths(PathSelectors.ant("/person.*"))
+	//			.paths(PathSelectors.ant("/person.*"))
                 .apis(RequestHandlerSelectors.basePackage("com.example.demo.controllers"))
                 .build();
     }
