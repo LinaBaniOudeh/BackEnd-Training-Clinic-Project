@@ -11,8 +11,8 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Patient extends Person{
@@ -20,10 +20,4 @@ public class Patient extends Person{
     private Set<Doctor> doctors;
 
 
-    public Patient() {
-    }
-
-    public Patient(Long id, String name, Set<PhoneNumber> numbers, BankAccount bankAccount, String address, Date dob) {
-        super(id, name, numbers, bankAccount, address, dob);
-    }
 }

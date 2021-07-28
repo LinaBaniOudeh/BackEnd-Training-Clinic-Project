@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface PersonService {
     public List<Person> getAll();
-    public Person addToList(Person person);
+    public String addToList(Person person);
     public String delete(Integer personId);
-    public String UpdatePersonList(Person person);
+    public String Update(Person person);
 
 
 

@@ -15,12 +15,12 @@ public class PersonServiceImp implements PersonService {
 
     public List<Person> getAll() {
 
-        return  personRepository.findAll();
+        return (List<Person>) personRepository.findAll();
     }
 
-    public Person addToList(Person person) {
+    public String addToList(Person person) {
         personRepository.save(person);
-        return personRepository.save(person);
+        return "Added Successfully";
     }
 
     public String delete(Integer personId) {
@@ -35,7 +35,7 @@ public class PersonServiceImp implements PersonService {
 
     }
 
-    public String UpdatePersonList(Person person) {
+    public String Update(Person person) {
         personRepository.save(person);
         return "success";
     }

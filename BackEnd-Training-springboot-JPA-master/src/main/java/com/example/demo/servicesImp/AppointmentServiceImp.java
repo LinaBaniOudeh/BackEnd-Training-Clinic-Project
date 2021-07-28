@@ -19,21 +19,21 @@ public class AppointmentServiceImp implements AppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepo;
-
-    public String bookAppointment(AppointmentFormDto appointmentFormDto) {
-        Patient patient = new ObjectMapper().convertValue(appointmentFormDto, Patient.class);
-        int patientId = patientRepo.save(patient).getId();
-        System.out.println(">>>>>>>>>patient saved successfully!!!<<<<<<<<<");
-
-
-        System.out.println(10 / 0);
-        Appointment appointment = Appointment.builder()
-                .date(new Date(System.currentTimeMillis()))
-                .doctorId(4)
-                .patientId(patientId)
-                .build();
-        int appointmentId = appointmentRepo.save(appointment).getId();
-
-        return "Appointment booked successfully!! with : " + appointmentId;
-    }
+//
+//    public String bookAppointment(AppointmentFormDto appointmentFormDto) {
+//        Patient patient = new ObjectMapper().convertValue(appointmentFormDto, Patient.class);
+//        int patientId = patientRepo.save(patient).getId();
+//        System.out.println(">>>>>>>>>patient saved successfully!!!<<<<<<<<<");
+//
+//
+//        System.out.println(10 / 0);
+//        Appointment appointment = Appointment.builder()
+//                .date(new Date(System.currentTimeMillis()))
+//                .doctorId(4)
+//                .patientId(patientId)
+//                .build();
+//        int appointmentId = appointmentRepo.save(appointment).getId();
+//
+//        return "Appointment booked successfully!! with : " + appointmentId;
+//    }
 }

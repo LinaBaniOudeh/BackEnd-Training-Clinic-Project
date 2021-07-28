@@ -1,4 +1,5 @@
 package com.example.demo.models;
+import lombok.*;
 import net.sf.ehcache.config.PersistenceConfiguration;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -12,6 +13,8 @@ import java.util.Set;
 //THIS IS THE FIRST VERSION OF PERSON
 @Entity
 @Table(name = "person")
+@Setter
+@Getter
 //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@MappedSuperclass
@@ -22,7 +25,7 @@ public  class Person   {
     //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private int id;
-    //@Column(nullable = false,unique = true)
+    @Column(nullable = false,unique = true)
 
     @NotEmpty(message = "must fill name field")
     @Size(min =3,max = 15,message = "name must be at least 3 character and not exceed 15")
@@ -33,29 +36,32 @@ public  class Person   {
     @Temporal(TemporalType.DATE)
     private Date dob;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ACCOUNT_ID")
+    private BankAccount bankAccount;
 
-//    @OneToOne(mappedBy = "person")
-//    private BankAccount bankAccount;
+//
+
+
+    public Person(int id, String name, String address, Date dob, BankAccount bankAccount) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.dob = dob;
+        this.bankAccount = bankAccount;
+    }
 
     public Person() {
 
-        super();
     }
 
-    public Person(Long id, String name, Set<PhoneNumber> numbers, BankAccount bankAccount, String address,Date dob) {
-    }
-
-//    public void setNumbers(Set<PhoneNumber> numbers) {
-//        this.numbers = numbers;
+//    public void setId(int id) {
+//        this.id = id;
 //    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
 //    public BankAccount getBankAccount() {
 //        return bankAccount;
@@ -65,29 +71,29 @@ public  class Person   {
 //        this.bankAccount = bankAccount;
 //    }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+////
+//    public Date getDob() {
+//        return dob;
+//    }
+//
+//    public void setDob(Date dob) {
+//        this.dob = dob;
+//    }
+//
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
 
 
 //    public Set<PhoneNumber> getNumbers() {
@@ -116,50 +122,44 @@ public  class Person   {
 //        }
 //    }
 
-    public static class Builder {
-        private long id;
-        private  String name;
-        private Set<PhoneNumber> numbers;
-        private BankAccount bankAccount;
-        private String address;
-        @Temporal(TemporalType.DATE)
-        private Date dob;
-
-        public Builder setNumbers(Set<PhoneNumber> numbers) {
-            this.numbers = numbers;
-            return this;
-        }
-
-        public Builder setId(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder setBankAccount(BankAccount bankAccount) {
-            this.bankAccount = bankAccount;
-            return this;
-        }
-
-        public Builder setAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public Builder setDob(Date dob) {
-            this.dob = dob;
-            return this;
-        }
-
-
-
-        public Person build(){
-
-            return new Person(id,name, numbers,bankAccount, address,dob);
-        }
-    }
+//    public static class Builder {
+//        private int id;
+//        private  String name;
+//        private Set<PhoneNumber> numbers;
+//        private BankAccount bankAccount;
+//        private String address;
+//        @Temporal(TemporalType.DATE)
+//        private Date dob;
+//
+//
+//
+//        public Builder setId(int id) {
+//            this.id = id;
+//            return this;
+//        }
+//
+//        public Builder setName(String name) {
+//            this.name = name;
+//            return this;
+//        }
+//
+//
+//
+//        public Builder setAddress(String address) {
+//            this.address = address;
+//            return this;
+//        }
+//
+//        public Builder setDob(Date dob) {
+//            this.dob = dob;
+//            return this;
+//        }
+//
+//
+//
+//        public Person build(){
+//
+//            return new Person(id,name, address,dob);
+//        }
+//    }
 }

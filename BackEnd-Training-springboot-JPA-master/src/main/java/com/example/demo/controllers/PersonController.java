@@ -18,7 +18,8 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public Person addOne(@RequestBody Person person) {
+    public String addOne(@RequestBody Person person) {
+
         return service.addToList(person);
     }
 
@@ -32,7 +33,7 @@ public class PersonController {
 
     @PutMapping("/person")
     public String updatePerson(@RequestBody Person person) {
-        return service.UpdatePersonList(person);
+        return service.Update(person);
 
     }
 

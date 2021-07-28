@@ -3,7 +3,6 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 //this is first version
-
 @Entity
 public class BankAccount {
     @Id
@@ -15,9 +14,12 @@ public class BankAccount {
 //    private Date validFrom;
 //    @Temporal(TemporalType.DATE)
 //    private Date ValidTo;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name="person_id")
-//    private Person person;
+
+    //@OneToOne(cascade = CascadeType.ALL)
+   // @JoinColumn(name = "person_id")
+
+    @OneToOne(mappedBy="bankAccount")
+    private Person person;
 
     public int getId() {
         return id;
@@ -43,11 +45,11 @@ public class BankAccount {
         this.type = type;
     }
 
-//    public Person getPerson() {
-//        return person;
-//    }
-//
-//    public void setPerson(Person person) {
-//        this.person = person;
-//    }
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }

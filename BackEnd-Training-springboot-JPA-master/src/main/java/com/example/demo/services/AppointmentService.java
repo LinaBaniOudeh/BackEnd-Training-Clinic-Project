@@ -4,5 +4,5 @@ import com.example.demo.dto.AppointmentFormDto;
 
 public interface AppointmentService {
 
-    public String bookAppointment(AppointmentFormDto appointmentFormDto);
+  //  public String bookAppointment(AppointmentFormDto appointmentFormDto);
 }
