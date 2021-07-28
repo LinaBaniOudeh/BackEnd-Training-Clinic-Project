@@ -11,17 +11,17 @@ public class PhoneNumber {
     private String number;
     private String type;
 
-    public Person getPerson() {
-        return person;
-    }
+//    public Person getPerson() {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person) {
+//        this.person = person;
+//    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    @ManyToOne
-    @JoinColumn(name="person_id")
-    private Person person;
+//    @ManyToOne
+//    @JoinColumn(name="person_id")
+//    private Person person;
 
     public long getPid() {
         return pid;

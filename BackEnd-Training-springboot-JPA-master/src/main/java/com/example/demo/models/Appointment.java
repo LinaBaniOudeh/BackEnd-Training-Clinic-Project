@@ -22,8 +22,8 @@ public class Appointment {
 
     private Date date;
 
-    private long doctorId;
+    private int doctorId;
 
-    private long patientId;
+    private int patientId;
     private String description;
 }

@@ -22,7 +22,7 @@ public class AppointmentServiceImp implements AppointmentService {
 
     public String bookAppointment(AppointmentFormDto appointmentFormDto) {
         Patient patient = new ObjectMapper().convertValue(appointmentFormDto, Patient.class);
-        Long patientId = patientRepo.save(patient).getId();
+        int patientId = patientRepo.save(patient).getId();
         System.out.println(">>>>>>>>>patient saved successfully!!!<<<<<<<<<");
 
 
