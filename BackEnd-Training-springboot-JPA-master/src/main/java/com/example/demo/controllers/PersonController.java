@@ -4,6 +4,7 @@ import java.util.List;
 import com.example.demo.models.Person;
 import com.example.demo.servicesImp.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +27,8 @@ public class PersonController {
 
 
     @DeleteMapping(value = "/person/{Id}")
-    public String deleteOne(@PathVariable Integer Id) {
+    public ResponseEntity<Object> deleteOne(@PathVariable Integer Id) {
+
         return service.delete(Id);
     }
 
