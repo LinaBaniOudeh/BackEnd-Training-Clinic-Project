@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.models.Person;
 import com.example.demo.repositories.PersonRepository;
+import com.example.demo.repositories.PhoneNumberRepository;
 import com.example.demo.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Service;
 public class PersonServiceImp implements PersonService {
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    PhoneNumberRepository phoneNumberRepository;
 
     public List<Person> getAll() {
 
@@ -25,14 +29,17 @@ public class PersonServiceImp implements PersonService {
         return "Added Successfully";
     }
 
-    public ResponseEntity<Object> delete(Integer personId) {
-        Person existingUser = this.personRepository.findById(personId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + personId));
-        this.personRepository.delete(existingUser);
-        return ResponseEntity.ok().build();
+    public String delete(Integer personId) {
+        try {
+            personRepository.deleteById(personId);
+
+        } catch (Exception e) {
+
+            return "This Id " + "{" + personId + "}" + " Not Exist !!";
+        }
+        return "success";
 
     }
-
     public String Update(Person person) {
         personRepository.save(person);
         return "success";

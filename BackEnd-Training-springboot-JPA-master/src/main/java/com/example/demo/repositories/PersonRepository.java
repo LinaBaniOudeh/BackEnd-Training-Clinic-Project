@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
-           ResponseEntity<Person> delete(int Id);
+          // ResponseEntity<Person> delete(int Id);
 //        @Query("from Person")
 //        List<Person> findAll();
 //        Person findById(int id);

@@ -1,5 +1,8 @@
 package com.example.demo.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,18 +16,25 @@ public class PhoneNumber {
 
 
 
-    @ManyToOne
-    @JoinColumn(name="phone_id", nullable=false)
-    private Person person;
+//    @ManyToOne
+//    @JoinColumn(name="phone_id", nullable=false)
 
-    public Person getPerson() {
-        return person;
-    }
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "person_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+//    @ManyToOne
+//    @JoinColumn(name="person_id", nullable=false)
+//    private Person person;
 
+//    public Person getPerson() {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person) {
+//        this.person = person;
+//    }
+//
 
 
     public long getPid() {

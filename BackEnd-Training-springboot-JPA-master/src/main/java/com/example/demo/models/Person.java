@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 //THIS IS THE FIRST VERSION OF PERSON
 @Entity
@@ -33,9 +34,13 @@ public  class Person {
     @Size(min = 3, max = 15, message = "name must be at least 3 character and not exceed 15")
     private String name;
 
-
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private Set<PhoneNumber> numbers;
+//    @OneToMany(
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+    @OneToMany(targetEntity = PhoneNumber.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id",referencedColumnName ="id" )
+    private List<PhoneNumber> numbers;
 
     private String address;
     @Temporal(TemporalType.DATE)

@@ -27,10 +27,13 @@ public class PersonController {
 
 
     @DeleteMapping(value = "/person/{Id}")
-    public ResponseEntity<Object> deleteOne(@PathVariable Integer Id) {
+    public String deleteOne(@PathVariable Integer Id) {
 
         return service.delete(Id);
     }
+
+
+
 
 
     @PutMapping("/person")
