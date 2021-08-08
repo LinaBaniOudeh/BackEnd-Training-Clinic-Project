@@ -8,14 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
+        <module name="BackEnd-Training-springboot-JPA-master" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BackEnd-Training-springboot-JPA-master" target="1.8" />
       <module name="demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BackEnd-Training-springboot-JPA-master" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>
   </component>
