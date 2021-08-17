@@ -3,7 +3,9 @@ package com.example.demo.servicesImp;
 import java.util.List;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.models.BankAccount;
 import com.example.demo.models.Person;
+import com.example.demo.repositories.BankAccountRepository;
 import com.example.demo.repositories.PersonRepository;
 import com.example.demo.repositories.PhoneNumberRepository;
 import com.example.demo.services.PersonService;
@@ -19,14 +21,23 @@ public class PersonServiceImp implements PersonService {
     @Autowired
     PhoneNumberRepository phoneNumberRepository;
 
+    @Autowired
+    BankAccountRepository bankAccountRepository;
+
     public List<Person> getAll() {
 
         return (List<Person>) personRepository.findAll();
     }
 
-    public String addToList(Person person) {
-        personRepository.save(person);
-        return "Added Successfully";
+    public Person addToList(Person person) {
+
+//        if (person.getNumbers() != null) {
+//            phoneNumberRepository.saveAll(person.getNumbers());
+//        }
+        if (person.getNumbers() != null && person.getNumbers().size() > 0) {
+            phoneNumberRepository.saveAll(person.getNumbers());
+        }
+        return personRepository.save(person);
     }
 
     public String delete(Integer personId) {

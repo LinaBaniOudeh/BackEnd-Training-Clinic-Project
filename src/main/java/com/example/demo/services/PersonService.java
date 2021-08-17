@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PersonService {
     public List<Person> getAll();
-    public String addToList(Person person);
+    public Person addToList(Person person);
     public String delete(Integer personId);
     public String Update(Person person);
 

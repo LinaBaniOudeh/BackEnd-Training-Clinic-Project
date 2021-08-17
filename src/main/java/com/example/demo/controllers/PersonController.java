@@ -19,7 +19,7 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public String addOne(@RequestBody Person person) {
+    public Person addOne(@RequestBody Person person) {
 
         return service.addToList(person);
     }

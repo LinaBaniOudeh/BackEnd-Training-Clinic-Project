@@ -38,8 +38,7 @@ public  class Person {
 //            cascade = CascadeType.ALL,
 //            orphanRemoval = true
 //    )
-    @OneToMany(targetEntity = PhoneNumber.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id",referencedColumnName ="id" )
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PhoneNumber> numbers;
 
     private String address;

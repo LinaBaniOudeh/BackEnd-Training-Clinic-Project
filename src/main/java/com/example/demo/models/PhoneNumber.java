@@ -1,12 +1,18 @@
 package com.example.demo.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-
+@AllArgsConstructor
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
-
 public class PhoneNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +20,11 @@ public class PhoneNumber {
     private String number;
     private String type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "person_id"), name = "person_id")
+    private Person person;
 
 
-//    @ManyToOne
 //    @JoinColumn(name="phone_id", nullable=false)
 
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -25,7 +33,7 @@ public class PhoneNumber {
 
 //    @ManyToOne
 //    @JoinColumn(name="person_id", nullable=false)
-//    private Person person;
+
 
 //    public Person getPerson() {
 //        return person;
